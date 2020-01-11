@@ -19,3 +19,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+*.01_stylues
+*.02_adaptive
+*.adaptive
+*.gshop-client_pages
