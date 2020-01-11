@@ -2,15 +2,15 @@
   <section class="loginContainer">
       <div class="loginInner">
         <div class="login_header">
-          <h2 class="login_logo">硅谷外卖</h2>
+          <h2 class="login_logo">懵人外卖</h2>
           <div class="login_header_title">
-            <a href="javascript:;" class="on">短信登录</a>
-            <a href="javascript:;">密码登录</a>
+            <a href="javascript:;" @click="isUserNameLogin=false" :class="{on:!isUserNameLogin}">短信登录</a>
+            <a href="javascript:;" @click="isUserNameLogin=true" :class="{on:isUserNameLogin}">密码登录</a>
           </div>
         </div>
         <div class="login_content">
           <form>
-            <div class="on">
+            <div :class="{on: !isUserNameLogin}">
               <section class="login_message">
                 <input type="tel" maxlength="11" placeholder="手机号">
                 <button disabled="disabled" class="get_verification">获取验证码</button>
@@ -23,16 +23,18 @@
                 <a href="javascript:;">《用户服务协议》</a>
               </section>
             </div>
-            <div>
+            <div :class="{on: isUserNameLogin}">
               <section>
                 <section class="login_message">
                   <input type="tel" maxlength="11" placeholder="手机/邮箱/用户名">
                 </section>
                 <section class="login_verification">
-                  <input type="tel" maxlength="8" placeholder="密码">
-                  <div class="switch_button off">
-                    <div class="switch_circle"></div>
-                    <span class="switch_text">...</span>
+                  <input :type="isShowPws?'el':'password'" maxlength="8" placeholder="密码">
+                  <div class="switch_button" :class="isShowPws?'on':'off'" @click="isShowPws=!isShowPws">
+                    <!-- <div class="switch_circle" :class="isShowPws?'right':''"></div> -->
+                    <div class="switch_circle" :class="{right:isShowPws}"></div>
+                    <!-- 切换小圆点,输入的密码就没了 -->
+                    <span class="switch_text">{{isShowPws?'abc':'...'}}</span>
                   </div>
                 </section>
                 <section class="login_message">
@@ -54,6 +56,12 @@
 
 <script type="text/ecmascript-6">
   export default {
+    data () {
+      return {
+        isUserNameLogin: false,// 是否是用户名登录，默认为false
+        isShowPws: false,// 是否是用密码,默认不显示
+      }
+    }
   }
 </script>
 
@@ -156,6 +164,8 @@
                     background #fff
                     box-shadow 0 2px 4px 0 rgba(0,0,0,.1)
                     transition transform .3s
+                    &.right
+                      transform translateX(27px)
               .login_hint
                 margin-top 12px
                 color #999
