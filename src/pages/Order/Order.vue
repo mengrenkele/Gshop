@@ -2,6 +2,7 @@
   <!--订单-->
     <div>
       <section class="order">
+        <GshopHeader :title="'订单'"/>
         <section class="order_no_login">
           <img src="../../common/images/order/person.png">
           <h3>登录后查看外卖订单</h3>

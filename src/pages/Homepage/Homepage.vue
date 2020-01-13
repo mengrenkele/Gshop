@@ -42,11 +42,9 @@
   import _ from 'lodash'
   import {mapState} from 'vuex'
 
-import GshopHeader from '../../components/GshopHeader/GshopHeader.vue'
 import ShopList from '../../components/ShopList/ShopList.vue'
   export default {
     components:{
-      GshopHeader,
       ShopList
     },
     mounted(){

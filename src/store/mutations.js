@@ -3,7 +3,8 @@ import {
     SAVE_CATEGORYS,
     SAVE_SHOPLIST,
     SAVE_USER,
-    SAVE_TOKEN
+    SAVE_TOKEN,
+    LOGIN_OUT
 } from './state_type'
 
 export default {
@@ -25,5 +26,11 @@ export default {
     },
     [SAVE_TOKEN](state, token) {
         state.token = token
+    },
+    [LOGIN_OUT](state) {
+        state.user = {}
+        state.token = ''
+        //清空本地硬盘的token
+        localStorage.removeItem('token_key')
     },
 }
