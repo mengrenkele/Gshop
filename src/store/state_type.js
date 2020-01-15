@@ -16,3 +16,7 @@ export const ADD_FOOD_COUNT = 'add_food_count'
 
 export const DEL_FOOD_COUNT = 'del_food_count'
 
+export const CLEAR_CARTFOODS = 'clear_cartfoods'
+
+export const SAVE_CARTFOODS = 'save_cartfoods'
+

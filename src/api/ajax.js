@@ -35,7 +35,6 @@ instance.interceptors.request.use(config => {
 instance.interceptors.response.use(
     response => {
         // router.replace('/profile')
-        console.log(response.data)
         return response.data
     },
     error => {

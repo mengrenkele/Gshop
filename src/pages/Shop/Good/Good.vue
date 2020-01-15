@@ -45,6 +45,7 @@
         </ul>
       </div>
     </div>
+    <ShopCart />
   </div>
 </template>
 
@@ -52,6 +53,7 @@
 import { mapState } from "vuex";
 import BScroll from "@better-scroll/core";
 import CartControl from "../../../components/CartControl/CartControl";
+import ShopCart from "../../../components/ShopCart/ShopCart";
 export default {
   data() {
     return {
@@ -60,7 +62,8 @@ export default {
     };
   },
   components: {
-    CartControl
+    CartControl,
+    ShopCart
   },
   mounted() {
     if (this.goods) {
@@ -78,9 +81,6 @@ export default {
     navIndex() {
       //计算当前滚动完成时导航点对应的下标index
       let { tops, scrollY } = this;
-      // let index = tops.findIndex((top, index) =>
-      //   scrollY((top, index) >= tops[index] && scrollY < tops[index + 1])
-      // );
       let index = tops.findIndex(
         (top, index) => scrollY >= tops[index] && scrollY < tops[index + 1]
       );
@@ -118,18 +118,25 @@ export default {
   },
   methods: {
     _initScroll() {
-      //创建BScroll实例的方法
-      this.leftScroll = new BScroll(".leftContainer", {
-        scrollY: true, //纵行滑动
-        click: true //允许点击
-      });
-      this.rightScroll = new BScroll(".rightContainer", {
-        scrollY: true,
-        probeType: 2, //实时,惯性滑动不计算
-        //probeType:1,//非实时
-        //probeType:3,//实时,惯性滑动计算
-        click: true
-      });
+      if (this.leftScroll || this.rightScroll) {
+        // 之前生成过BScroll的实例
+        this.leftScroll.refresh(); // 重新刷新当前的实例, 重新计算content的高度/宽度
+        this.rightScroll.refresh();
+      } else {
+        //创建BScroll实例的方法
+        this.leftScroll = new BScroll(".leftContainer", {
+          scrollY: true, //纵行滑动
+          click: true //允许点击
+        });
+        this.rightScroll = new BScroll(".rightContainer", {
+          scrollY: true,
+          probeType: 2, //实时,惯性滑动不计算
+          //probeType:1,//非实时
+          //probeType:3,//实时,惯性滑动计算
+          click: true
+        });
+      }
+
       //绑定scroll事件
       // eslint-disable-next-line no-unused-vars
       this.rightScroll.on("scroll", ({ x, y }) => {
