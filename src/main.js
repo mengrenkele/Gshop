@@ -2,6 +2,7 @@ import Vue from 'vue'
 import 'lib-flexible/flexible'
 import './veeValidate'
 import { Button } from 'mint-ui'
+import './mock/mockServer'
 
 import router from './router'
 import store from './store'

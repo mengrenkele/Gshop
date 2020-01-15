@@ -66,6 +66,8 @@ export default [
     },
     {
         path: '/',
-        redirect: '/login'
+        redirect: '/homepage'
     },
 ]
+
+//另一种方式:当打开应用时,给重定向设立一个有无token的判断,有token去'/homepage',无token去'/login';但是在哪里加这个判断哦?

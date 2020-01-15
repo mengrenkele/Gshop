@@ -16,11 +16,12 @@ instance.interceptors.request.use(config => {
 
     //请求时携带token的方式:cookie,请求参数(parmas),请求头[authorization]
     //先判断什么时候需要带token过去(登陆过,生成token之后,再来打开应用时)
-    let token = localStorage.getItem('token_key')
     if (config.headers.needToken) {
+        let token = localStorage.getItem('token_key')
         if (token) {
             //如果有token,就存到请求头中
             config.headers.authorization = token
+
         } else {
             throw Error('请先登录')
         }
@@ -32,7 +33,11 @@ instance.interceptors.request.use(config => {
 
 //3.相应拦截器
 instance.interceptors.response.use(
-    response => response.data,
+    response => {
+        // router.replace('/profile')
+        console.log(response.data)
+        return response.data
+    },
     error => {
         console.log(error.message)
         //如果没有错误响应对象,则在请求拦截器中报错

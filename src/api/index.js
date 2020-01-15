@@ -20,6 +20,9 @@ export const getShopList = (latitude, longitude) => ajax({
     params: {
         latitude,
         longitude
+    },
+    headers: {
+        needToken: true
     }
 })
 
@@ -39,6 +42,9 @@ export const loginWithUserName = ({ username, psw, captcha }) => ajax({
         name: username,
         psw,
         captcha
+    },
+    headers: {
+        needToken: false,
     }
 })
 
@@ -49,6 +55,9 @@ export const loginWithPhone = ({ phone, code }) => ajax({
     data: {
         phone,
         code
+    },
+    headers: {
+        needToken: false,
     }
 })
 
@@ -58,4 +67,14 @@ export const autoLogin = () => ajax({
     headers: {
         needToken: true,
     }
+})
+
+//测试
+export const lose = () => ajax({
+    url: '/lose'
+})
+
+//模拟数据接口shopDatas
+export const getShopDatas = () => ajax({
+    url: '/getShopDatas'
 })
